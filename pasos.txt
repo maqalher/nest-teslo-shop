@@ -67,3 +67,36 @@ seed
 
 crear en seed
     data/seed-data.ts
+
+seed
+    nest g res files --no-spec
+        REST API
+        y
+
+tipos de multer
+https://docs.nestjs.com/techniques/file-upload
+    yarn add -D @types/multer
+    ** agregar import type { Multer } from 'multer';  para que detecte multer 
+
+crear helper/fileFilter.helper.ts en files
+
+crear en raiz static/products
+crear en raiz static/uploads
+
+crear fileNamer.helper.ts en helpers
+
+agregar uuid
+    yarn add uuid
+
+agregar a .env
+    HOST_API
+    PORT
+
+** agregar imports: [ConfigModule], en files.modules para tener acceso a private readonly configService: ConfigService,
+
+Servir contenido estatico
+    yarn add @nestjs/serve-static
+    agregar en app.module
+        ServeStaticModule.forRoot({
+            rootPath: join(__dirname, '..', 'public')
+        }),
