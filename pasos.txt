@@ -100,3 +100,68 @@ Servir contenido estatico
         ServeStaticModule.forRoot({
             rootPath: join(__dirname, '..', 'public')
         }),
+
+Crear Auth
+    nest g res auth --no-spec
+        REST API
+        y
+
+    crear 
+        create-user.dto.ts
+    
+agregar bcrypt
+    yarn add bcrypt
+
+crear login-user.dto.ts
+
+
+Passport (authentication)
+https://docs.nestjs.com/security/authentication
+https://docs.nestjs.com/recipes/passport
+https://docs.nestjs.com/recipes/passport#jwt-functionality
+
+    yarn add @nestjs/passport passport
+    yarn add @nestjs/jwt passport-jwt
+    yarn add -D @types/passport-jwt
+
+    agregar en auth.module.ts
+        PassportModule.register({defaultStrategy: 'jwt'}),
+
+        JwtModule.registerAsync({
+            imports: [ConfigModule],
+            inject: [ConfigService],
+            useFactory: (configService:ConfigService) => {
+                return {
+                // secret: process.env.JWT_SECRET,
+                secret: configService.get('JWT_SECRET'),
+                signOptions: {
+                    expiresIn: '2h'
+                }
+                }
+            }
+        })
+
+    agregar en el .env
+        JWT_SECRET
+
+crear en atuh/strategies/jwt-strategy.ts
+crear en atuh/interfaces/jwt-payload.interface.ts
+
+    * agregar en import y experirt JwtStrategy en auth.module
+
+
+Guards
+    @UseGuards( AuthGuard() )
+
+custom
+crear decorators/get-user.decorator.ts
+
+crear Guards
+    nest g gu auth/guards/useRole --no-spec
+
+crear decorador
+    nest g d auth/decorators/roleProtected --no-spec
+
+crear interfaces/valid-roles.ts
+
+crear en decorators/auth.decorator.ts
