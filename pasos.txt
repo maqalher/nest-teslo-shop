@@ -178,3 +178,13 @@ swagger
             .build();
         const documentFactory = () => SwaggerModule.createDocument(app, config);
         SwaggerModule.setup('api', app, documentFactory);
+
+
+gateways
+https://docs.nestjs.com/websockets/gateways
+    nest g res messagesWs --no-spec
+        websockets
+        n
+
+    yarn add @nestjs/websockets @nestjs/platform-socket.io
+    yarn add socket.io
